@@ -9,12 +9,13 @@ public class ReverseLinkedList {
         Node.printAll(head);
 
         System.out.println("After reverse!");
-        printReversed(head);
+//        printReversed(head);
 
-        Node.printAll(reverse(head));
+//        Node.printAll(reverse(head));
+        Node.printAll(reverseRecursion(head, null));
     }
 
-    public static Node reverse(Node head) {
+    public static Node reverseLoop(Node head) {
         Node prev = null;
         while (head != null) {
             Node next = head.getNext();
@@ -24,6 +25,17 @@ public class ReverseLinkedList {
         }
 
         return prev;
+    }
+
+    public static Node reverseRecursion(Node head, Node prev) {
+        if (head == null ) {
+            return prev;
+        }
+
+        Node next = head.getNext();
+        head.setNext(prev);
+
+        return reverseRecursion(next, head);
     }
 
     public static void printReversed(Node head) {
